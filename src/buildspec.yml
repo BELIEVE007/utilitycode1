@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "installing nodejs..."
+      - curl -fsSL https://deb.nodesource.com/setup_16.x | bash - # This installs the latest Node.js 16.x version
+      - sudo apt-get install -y nodejs
+  pre_build:
+    commands:
+      - echo "installing dependencies..."
+      - npm install # Install project dependencies
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - echo "building..."
+      - ng build --prod || exit 0 # Build the Angular app in production mode
+  post_build:
+    commands:
+      - echo "Creating artifacts directory..."
+      - mkdir -p ./dist/myapp2
+      - mv appspec.yml ./dist/myapp2
+      - mv scripts ./dist/myapp2
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist/myapp2

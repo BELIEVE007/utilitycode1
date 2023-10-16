@@ -17,7 +17,7 @@ phases:
       - ng build --prod || exit 0 # Build the Angular app in production mode
   post_build:
     commands:
-      - echo "Creating artifacts directory..."
+      - echo "Creating artifacts directory.."
       - mkdir -p ./dist/myapp2
       - mv appspec.yml ./dist/myapp2
       - mv scripts ./dist/myapp2

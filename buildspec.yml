@@ -20,7 +20,7 @@ phases:
       - echo "Creating artifacts directory.."
       - mkdir -p ./dist/utilitycode
       - mv appspec.yml ./dist/utilitycode
-      - mv scripts ./dist/utilitycode
+      - mv scripts ./dist/utilitycode || exit 0
 
 artifacts:
   files:
